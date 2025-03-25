@@ -25,12 +25,12 @@ tests_require = [
 setup(
 	name = "web.security",
 	version = version,
-	
+
 	description = description,
 	long_description = (here / 'README.rst').read_text('utf-8'),
 	url = url,
 	download_url = 'https://github.com/marrow/web.security/releases',
-	
+
 	author = author.name,
 	author_email = author.email,
 
@@ -64,30 +64,30 @@ setup(
 			"Programming Language :: Python :: Implementation :: PyPy",
 			"Topic :: Software Development :: Libraries :: Python Modules",
 		],
-	
+
 	packages = ('web.ext', 'web.security', 'web.signature'),
 	include_package_data = True,
 	package_data = {'': ['README.rst', 'LICENSE.txt']},
 	zip_safe = False,
-	
+
 	setup_requires = [
 			'pytest-runner',
 		] if {'pytest', 'test', 'ptr'}.intersection(argv) else [],
-	
+
 	install_requires = [
-			'WebCore~=3.0.0',  # Web framework.
+			'WebCore>=3.0.0,<4.0.0',  # Web framework.
 			'marrow.package>=2.0.0,<3.0.0',  # Plugin management.
 		],
-	
+
 	extras_require = dict(
 			development = tests_require + ['pre-commit', 'bandit', 'e', 'pudb', 'ptipython'],
 			ecdsa = ['fastecdsa>=1.0.3'],
 			fastecdsa = ['fastecdsa>=1.0.3'],  # Deprecated reference.
 			geo = ['IP2Location'],
 		),
-	
+
 	tests_require = tests_require,
-	
+
 	entry_points = {
 			'web.extension': [
 					'acl = web.ext.acl:ACLExtension',  # Access control list validation.
